@@ -1,0 +1,26 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yarikRed/chat.git"
+  },
+  "keywords": [
+    "socket"
+  ],
+  "author": "yarik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yarikRed/chat/issues"
+  },
+  "homepage": "https://github.com/yarikRed/chat#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nunjucks": "^3.1.4"
+  }
+}
