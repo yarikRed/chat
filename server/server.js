@@ -5,6 +5,10 @@ const app = express();
 const nunjucks = require('nunjucks');
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {serveClient: true});
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://admin:zaq12wsx@ds157964.mlab.com:57964/notes', {useNewUrlParser: true});
+mongoose.Promise = require('bluebird');
 
 nunjucks.configure('./client/views', {
    autoescape: true,
@@ -17,22 +21,7 @@ app.get("/", (req, res) => {
     res.render('index.html', {date: new Date()});
 });
 
-io.on('connection', function (socket) {
-
-    socket.emit('connected', "Connected!!!!!");
-
-    socket.join('all');
-
-    socket.on('msg', content => {
-        const obj = {
-            date: new Date(),
-            content: content,
-            username: socket.id
-        }
-        socket.emit("message", obj);
-        socket.to('all').emit("message", obj);
-    });
-});
+require('./sockets')(io);
 
 server.listen(7777, "0.0.0.0", () => {
     console.log("Server started on port 7777");
